@@ -1,0 +1,49 @@
+{
+  "name": "Insight",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the insight"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Feature Request",
+        "Bug",
+        "UI/UX",
+        "Positive"
+      ],
+      "description": "Category of the insight"
+    },
+    "severity": {
+      "type": "number",
+      "description": "Severity score from 1 to 5"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the insight"
+    },
+    "related_feedback_id": {
+      "type": "string",
+      "description": "ID of the related feedback entry"
+    },
+    "related_feedback_title": {
+      "type": "string",
+      "description": "Title of the related feedback for display"
+    },
+    "product_id": {
+      "type": "string",
+      "description": "ID of the linked Product entity"
+    },
+    "occurrence_count": {
+      "type": "number",
+      "default": 1,
+      "description": "Number of feedback entries that relate to this insight"
+    }
+  },
+  "required": [
+    "name",
+    "category"
+  ]
+}

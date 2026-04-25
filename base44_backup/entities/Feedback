@@ -1,0 +1,64 @@
+{
+  "name": "Feedback",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Short title for the feedback"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "Interview",
+        "Support Ticket",
+        "Review"
+      ],
+      "description": "Origin of the feedback"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "Internal",
+        "External"
+      ],
+      "default": "Internal",
+      "description": "Internal = manual/CSV entry, External = AI/Scanned"
+    },
+    "raw_text": {
+      "type": "string",
+      "description": "The raw feedback text content"
+    },
+    "sentiment": {
+      "type": "string",
+      "enum": [
+        "Positive",
+        "Neutral",
+        "Negative",
+        "Mixed"
+      ],
+      "description": "AI-calculated sentiment"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date feedback was collected"
+    },
+    "analyzed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether AI analysis has been run"
+    },
+    "product_id": {
+      "type": "string",
+      "description": "ID of the linked Product entity"
+    },
+    "confidence_score": {
+      "type": "string",
+      "description": "AI-generated note explaining why this feedback is relevant to the product (watches/wearables)"
+    }
+  },
+  "required": [
+    "title",
+    "raw_text"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "PRD",
+  "type": "object",
+  "properties": {
+    "product_name": {
+      "type": "string",
+      "description": "Name of the product"
+    },
+    "goal": {
+      "type": "string",
+      "description": "High-level product goal"
+    },
+    "target_audience": {
+      "type": "string",
+      "description": "Who this product is for"
+    },
+    "executive_summary": {
+      "type": "string",
+      "description": "AI-generated executive summary"
+    },
+    "problem_statement": {
+      "type": "string",
+      "description": "AI-generated problem statement"
+    },
+    "proposed_solution": {
+      "type": "string",
+      "description": "AI-generated proposed solution"
+    },
+    "user_stories": {
+      "type": "string",
+      "description": "AI-generated user stories in JSON or text format"
+    },
+    "success_metrics": {
+      "type": "string",
+      "description": "KPIs and success metrics"
+    },
+    "selected_insight_ids": {
+      "type": "string",
+      "description": "Comma-separated IDs of insights used to generate this PRD"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Draft",
+        "In Review",
+        "Approved",
+        "Archived"
+      ],
+      "default": "Draft"
+    }
+  },
+  "required": [
+    "product_name"
+  ]
+}

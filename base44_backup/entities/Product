@@ -1,0 +1,21 @@
+{
+  "name": "Product",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the product"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company owning the product"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the product"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Copy-Item -Recurse -Path \"c:\\\\src\\\\projects\\\\insight-sync-ai\\\\base44_backup\\\\src\\\\components\\\\ui\" -Destination \"c:\\\\src\\\\projects\\\\insight-sync-ai\\\\components\\\\ui\")",
+      "Bash(npx next *)",
+      "PowerShell($content = [System.IO.File]::ReadAllBytes\\(\"c:\\\\src\\\\projects\\\\insight-sync-ai\\\\components\\\\insights\\\\InsightCard.tsx\"\\); Write-Host \"First 10 bytes:\"; $content[0..9] | ForEach-Object { \"0x{0:X2}\" -f $_ })"
+    ]
+  }
+}
