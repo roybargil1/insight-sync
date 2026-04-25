@@ -19,8 +19,8 @@ export default function LoginPage() {
     setError(null);
     setGuestLoading(true);
     const { error } = await browserSupabase.auth.signInWithPassword({
-      email: "guest@demo.com",
-      password: "Guest123!",
+      email: process.env.NEXT_PUBLIC_GUEST_EMAIL!,
+      password: process.env.NEXT_PUBLIC_GUEST_PASSWORD!,
     });
     if (error) {
       setError("Guest login unavailable: " + error.message);
