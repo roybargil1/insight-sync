@@ -11,25 +11,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/layout.js"
     ],
-    "/(dashboard)/prd/page": [
+    "/(dashboard)/feedback/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/prd/page.js"
+      "static/chunks/app/(dashboard)/feedback/page.js"
     ],
     "/(dashboard)/products/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/products/page.js"
     ],
-    "/(dashboard)/feedback/page": [
+    "/api/agent/sync/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/feedback/page.js"
+      "static/chunks/app/api/agent/sync/route.js"
     ],
-    "/(dashboard)/insights/page": [
+    "/api/analyze/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/insights/page.js"
+      "static/chunks/app/api/analyze/route.js"
     ]
   }
 }
