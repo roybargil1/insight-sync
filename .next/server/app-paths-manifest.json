@@ -1,6 +1,5 @@
 {
-  "/(dashboard)/products/page": "app/(dashboard)/products/page.js",
+  "/api/analyze/route": "app/api/analyze/route.js",
   "/(dashboard)/feedback/page": "app/(dashboard)/feedback/page.js",
-  "/(dashboard)/insights/page": "app/(dashboard)/insights/page.js",
-  "/(dashboard)/prd/page": "app/(dashboard)/prd/page.js"
+  "/(dashboard)/products/page": "app/(dashboard)/products/page.js"
 }

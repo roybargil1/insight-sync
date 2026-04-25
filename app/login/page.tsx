@@ -11,8 +11,25 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [guestLoading, setGuestLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+
+  const handleGuestLogin = async () => {
+    setError(null);
+    setGuestLoading(true);
+    const { error } = await browserSupabase.auth.signInWithPassword({
+      email: "guest@demo.com",
+      password: "Guest123!",
+    });
+    if (error) {
+      setError("Guest login unavailable: " + error.message);
+      setGuestLoading(false);
+    } else {
+      router.push("/feedback");
+      router.refresh();
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -113,7 +130,7 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || guestLoading}
               className="w-full py-2.5 px-4 text-sm font-semibold text-white rounded-lg transition-opacity disabled:opacity-60"
               style={{ background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)" }}
             >
@@ -122,6 +139,38 @@ export default function LoginPage() {
                 : mode === "signin" ? "Sign In" : "Create Account"}
             </button>
           </form>
+
+          <div className="flex items-center gap-3 my-5">
+            <div className="flex-1 h-px bg-slate-200" />
+            <span className="text-xs text-slate-400 font-medium">or</span>
+            <div className="flex-1 h-px bg-slate-200" />
+          </div>
+
+          <button
+            type="button"
+            onClick={handleGuestLogin}
+            disabled={guestLoading || loading}
+            className="w-full py-2.5 px-4 text-sm font-semibold text-slate-700 bg-white border-2 border-slate-200 rounded-lg hover:border-slate-300 hover:bg-slate-50 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
+          >
+            {guestLoading ? (
+              <>
+                <svg className="w-4 h-4 animate-spin text-slate-400" viewBox="0 0 24 24" fill="none">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                </svg>
+                Logging in…
+              </>
+            ) : (
+              <>
+                <svg className="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                View Demo (Guest Access)
+              </>
+            )}
+          </button>
+          <p className="text-center text-xs text-slate-400 mt-2">No account needed — explore with sample data</p>
         </div>
 
         {/* Toggle */}
