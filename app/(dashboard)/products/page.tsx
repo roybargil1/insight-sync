@@ -17,11 +17,13 @@ import {
 import { Package, Plus, Trash2, Building2, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useAuth } from "@/lib/AuthContext";
 
 const emptyForm = { name: "", company: "", description: "" };
 
 export default function ProductsPage() {
   const router = useRouter();
+  const { isGuest } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
@@ -43,10 +45,18 @@ export default function ProductsPage() {
   });
 
   const deleteMutation = useMutation({
-    mutationFn: (id: string) => Products.delete(id),
+    mutationFn: (id: string) => {
+      if (isGuest) {
+        return Promise.reject(new Error("Guests cannot delete products."));
+      }
+      return Products.delete(id);
+    },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["products"] });
       toast.success("Product removed.");
+    },
+    onError: (err: Error) => {
+      toast.error(err.message);
     },
   });
 
@@ -117,17 +127,19 @@ export default function ProductsPage() {
                 </div>
               </div>
               <div className="flex items-center gap-1 shrink-0">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    deleteMutation.mutate(p.id);
-                  }}
-                  className="text-muted-foreground hover:text-destructive h-7 w-7"
-                >
-                  <Trash2 className="w-3.5 h-3.5" />
-                </Button>
+                {!isGuest && (
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deleteMutation.mutate(p.id);
+                    }}
+                    className="text-muted-foreground hover:text-destructive h-7 w-7"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </Button>
+                )}
                 <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </div>
             </div>
