@@ -7,6 +7,7 @@ import type { User } from "@supabase/supabase-js";
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  isGuest: boolean;
   signOut: () => Promise<void>;
 }
 
@@ -41,8 +42,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await supabase.auth.signOut();
   };
 
+  const isGuest = !!user?.email && user.email === process.env.NEXT_PUBLIC_GUEST_EMAIL;
+
   return (
-    <AuthContext.Provider value={{ user, loading, signOut }}>
+    <AuthContext.Provider value={{ user, loading, isGuest, signOut }}>
       {children}
     </AuthContext.Provider>
   );
